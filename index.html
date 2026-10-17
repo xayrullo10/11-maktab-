@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>11-maktab — rasmiy sayt</title>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f7fa;--surface:#fff;--text:#1d2433;--muted:#5b6475;--board:#24493d;--board-text:#f1f5ef;--chalk:#f2c94c;--line:#dde2ea;--accent:#2f6b57;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12171d;--surface:#1b222b;--text:#e8ecf2;--muted:#9aa5b5;--board:#1d3a31;--line:#2c3643;--accent:#6fc3a5;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12171d;--surface:#1b222b;--text:#e8ecf2;--muted:#9aa5b5;--board:#1d3a31;--line:#2c3643;--accent:#6fc3a5;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 Nunito,system-ui,sans-serif}
+h1,h2,h3{font-family:Bitter,Georgia,serif;line-height:1.2;margin:0}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+nav{display:flex;gap:18px;justify-content:space-between;align-items:center;padding:14px 20px;max-width:960px;margin:0 auto;flex-wrap:wrap}
+nav b{font-family:Bitter,serif;font-size:1.1rem}
+nav div{display:flex;gap:16px;font-weight:600;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover,nav a:focus-visible{color:var(--accent)}
+.board{background:var(--board);color:var(--board-text);border-radius:18px;padding:36px 28px;margin:8px 20px 0;max-width:920px;margin-inline:auto;border:8px solid #8a6a43}
+.board h1{font-size:clamp(2rem,7vw,3.4rem);font-weight:800}
+.board p{max-width:46ch;opacity:.9;margin:14px 0 0}
+.btn{display:inline-block;background:var(--chalk);color:#2a2410;font-weight:700;padding:12px 22px;border-radius:10px;text-decoration:none}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.today{margin-top:28px;border-top:2px dashed rgba(241,245,239,.35);padding-top:16px;font-size:.95rem}
+.today span{display:inline-block;margin:4px 14px 4px 0}
+.today b{color:var(--chalk)}
+section{padding:54px 0 0}
+h2{font-size:1.7rem;margin-bottom:14px}
+.about{display:grid;gap:22px;grid-template-columns:1fr}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.facts div{border-left:4px solid var(--chalk);padding:4px 12px}
+.facts strong{display:block;font:800 1.8rem Bitter,serif}
+.facts small{color:var(--muted)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card h3{font-size:1.1rem;margin-bottom:6px}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.news li{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);list-style:none}
+.news ul{padding:0;margin:0}
+.news time{min-width:96px;font-weight:700;color:var(--accent)}
+footer{margin-top:60px;background:var(--board);color:var(--board-text);padding:32px 0 calc(32px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:grid;gap:8px}
+@media (min-width:700px){.about{grid-template-columns:1.2fr 1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.btn{border:0;cursor:pointer;font:700 1rem Nunito,sans-serif;margin-top:20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.chip{min-width:48px;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:700 1rem Nunito,sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.chip:focus-visible{outline:3px solid var(--chalk);outline-offset:2px}
+.days{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.day h3{font-size:1.05rem;margin-bottom:8px}
+.day ol{list-style:none;margin:0;padding:0;font-size:.95rem}
+.day li{display:flex;gap:10px;padding:4px 0}
+.day li time{color:var(--accent);font-weight:700;min-width:46px}
+.hint{color:var(--muted)}
+a.card{display:flex;gap:14px;align-items:center;text-decoration:none}
+a.card:hover,a.card:focus-visible{border-color:var(--accent)}
+.play{flex:none;width:48px;height:48px;border-radius:50%;background:var(--board);color:var(--chalk);display:grid;place-items:center}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btns .btn{margin-top:0}
+#bayram time{min-width:120px}
+</style>
+</head>
+<body>
+<nav><b>11-maktab</b><div><a href="#haqida">Biz haqimizda</a><a href="#sinflar">Sinflar</a><a href="#video">Videolar</a><a href="#yangilik">Yangiliklar</a><a href="#bayram">Bayramlar</a><a href="#aloqa">Aloqa</a></div></nav>
+
+<header class="board">
+<h1>Bilim — har kunlik odat</h1>
+<p>Bizning maktabda har bir o‘quvchi e’tibor, g‘amxo‘rlik va yaxshi ustozlar bilan o‘qiydi.</p>
+<div class="today"><b>Bugungi dars jadvali:</b><br>
+<span>1-dars 08:30 Matematika</span><span>2-dars 09:25 Ona tili</span><span>3-dars 10:20 Ingliz tili</span></div>
+<div class="btns"><button class="btn" id="jb" type="button" aria-expanded="false" aria-controls="jadval">Dars jadvali</button>
+<button class="btn" id="bb" type="button" aria-expanded="false" aria-controls="bayram">Bayramlar</button></div>
+</header>
+
+<main class="wrap">
+<section id="haqida" class="about">
+<div><h2>Biz haqimizda</h2>
+<p>Maktabimiz yillar davomida o‘quvchilarga mustahkam bilim va mustaqil fikrlashni o‘rgatib keladi. Bu yerga maktab tarixi va maqsadlarini yozing.</p></div>
+<div class="facts"><div><strong>25+</strong><small>yillik tajriba</small></div><div><strong>20+</strong><small>nafar o‘qituvchi</small></div><div><strong>450+</strong><small>nafar o‘quvchi</small></div></div>
+</section>
+
+<section id="jadval" hidden><h2>Dars jadvali</h2>
+<div class="chips" id="chips" role="group" aria-label="Sinfni tanlang"></div>
+<div id="out" aria-live="polite"><p class="hint">Jadvalni ko‘rish uchun sinfni tanlang.</p></div></section>
+
+<section id="sinflar"><h2>Sinflar va yo‘nalishlar</h2>
+<div class="grid">
+<div class="card"><h3>1–4-sinflar</h3><p>O‘qish, yozish va hisoblashning birinchi qadamlari.</p></div>
+<div class="card"><h3>5–9-sinflar</h3><p>Fanlar chuqurlashadi, to‘garaklar va olimpiadalarga tayyorgarlik.</p></div>
+<div class="card"><h3>10–11-sinflar</h3><p>Oliy o‘quv yurtlariga kirishga tayyorlov.</p></div>
+</div></section>
+
+<section id="video"><h2>Videolar</h2>
+<div class="grid">
+<a class="card" href="https://www.instagram.com/reel/DeTL_rxI2tm/" target="_blank" rel="noopener"><span class="play" aria-hidden="true">▶</span><span><h3>Maktab videosi 1</h3><p>Instagram’da ko‘rish</p></span></a>
+<a class="card" href="https://www.instagram.com/reel/Dd7t2PSIQTd/" target="_blank" rel="noopener"><span class="play" aria-hidden="true">▶</span><span><h3>Maktab videosi 2</h3><p>Instagram’da ko‘rish</p></span></a>
+</div></section>
+
+<section id="yangilik" class="news"><h2>Yangiliklar</h2>
+<ul>
+<li><time>Kutilmoqda</time><span>Ota-onalar yig‘ilishi.</span></li>
+<li><time>27-dekabr</time><span>Qishki ta’til.</span></li>
+</ul></section>
+<section id="bayram" class="news" hidden><h2>Bayramlar</h2>
+<ul>
+<li><time>1-yanvar</time><span>Yangi yil</span></li>
+<li><time>14-yanvar</time><span>Vatan himoyachilari kuni</span></li>
+<li><time>8-mart</time><span>Xalqaro xotin-qizlar kuni</span></li>
+<li><time>21-mart</time><span>Navro‘z bayrami</span></li>
+<li><time>O‘zgaruvchan</time><span>Ramazon hayiti — sanasi har yili hijriy taqvimga ko‘ra belgilanadi</span></li>
+<li><time>9-may</time><span>Xotira va qadrlash kuni</span></li>
+<li><time>O‘zgaruvchan</time><span>Qurbon hayiti — sanasi har yili hijriy taqvimga ko‘ra belgilanadi</span></li>
+<li><time>1-sentyabr</time><span>Mustaqillik kuni</span></li>
+<li><time>1-oktyabr</time><span>O‘qituvchi va murabbiylar kuni</span></li>
+<li><time>8-dekabr</time><span>Konstitutsiya kuni</span></li>
+</ul></section>
+</main>
+
+<footer id="aloqa"><div class="wrap">
+<h2>Aloqa</h2>
+<div>Manzil: Namangan tumani, Elatan MFY, Bog‘ ko‘cha, 74-uy</div>
+<div>Telefon: +998 77 379 38 91</div>
+<div>Ish vaqti: dushanba–shanba, 07:00–18:00</div>
+</div></footer>
+<script>
+(function(){
+var A=["Matematika","Ona tili","O‘qish","Tabiatshunoslik","Tasviriy san’at","Musiqa","Jismoniy tarbiya","Ingliz tili"];
+var B=["Matematika","Ona tili","Adabiyot","Ingliz tili","Tarix","Geografiya","Biologiya","Informatika","Jismoniy tarbiya","Rus tili"];
+var C=B.concat(["Fizika","Kimyo"]);
+var E=["Algebra","Geometriya","Fizika","Kimyo","Biologiya","Tarix","Adabiyot","Ingliz tili","Informatika","Jismoniy tarbiya"];
+var D=["Dushanba","Seshanba","Chorshanba","Payshanba","Juma","Shanba"];
+var T=["08:30","09:25","10:20","11:15","12:10","13:05"];
+function rng(s){return function(){s|=0;s=s+0x6D2B79F5|0;var t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function subs(g){return g<=4?A:g<=6?B:g<=9?C:E}
+function build(g){
+ var r=rng(g*7919+13),out=[];
+ for(var d=0;d<6;d++){
+  var n=g<=4?(d==5?3:4):(d==5?5:6),p=subs(g).slice();
+  for(var i=p.length-1;i>0;i--){var j=Math.floor(r()*(i+1)),t=p[i];p[i]=p[j];p[j]=t}
+  out.push(p.slice(0,n));
+ }
+ return out;
+}
+var chips=document.getElementById("chips"),out=document.getElementById("out"),sec=document.getElementById("jadval"),btn=document.getElementById("jb");
+for(var g=1;g<=11;g++){
+ var b=document.createElement("button");
+ b.type="button";b.className="chip";b.textContent=g;b.setAttribute("aria-pressed","false");
+ b.addEventListener("click",(function(g,b){return function(){
+  chips.querySelectorAll(".chip").forEach(function(c){c.setAttribute("aria-pressed","false")});
+  b.setAttribute("aria-pressed","true");
+  var h="<h3 style=\"margin-bottom:12px\">"+g+"-sinf"+"</h3><div class=\"days\">";
+  build(g).forEach(function(day,i){
+   h+="<div class=\"day\"><h3>"+D[i]+"</h3><ol>";
+   day.forEach(function(s,k){h+="<li><time>"+T[k]+"</time><span>"+s+"</span></li>"});
+   h+="</ol></div>";
+  });
+  out.innerHTML=h+"</div>";
+ }})(g,b));
+ chips.appendChild(b);
+}
+btn.addEventListener("click",function(){
+ var open=sec.hidden;
+ sec.hidden=!open;
+ btn.setAttribute("aria-expanded",open);
+ if(open)sec.scrollIntoView({behavior:"smooth",block:"start"});
+});
+var bs=document.getElementById("bayram"),bb=document.getElementById("bb");
+function tog(show){var o=show===undefined?bs.hidden:show;bs.hidden=!o;bb.setAttribute("aria-expanded",o);if(o)bs.scrollIntoView({behavior:"smooth",block:"start"})}
+bb.addEventListener("click",function(){tog()});
+document.querySelector('nav a[href="#bayram"]').addEventListener("click",function(e){e.preventDefault();tog(true)});
+})();
+</script>
+</body>
+</html>
